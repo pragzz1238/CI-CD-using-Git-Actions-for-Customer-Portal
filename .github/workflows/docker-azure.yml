@@ -36,7 +36,7 @@ jobs:
         with:
           host: 13.87.129.170
           username: azureuser
-          password: ${{ secrets.AZURE_VM_PASSWORD }}
+          key: ${{ secrets.AZURE_SSH_PRIVATE_KEY }}
           port: 22
           script: |
             docker pull pragna2803/demo-back:latest
