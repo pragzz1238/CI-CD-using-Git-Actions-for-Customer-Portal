@@ -31,12 +31,13 @@ jobs:
           docker build -t pragna2803/demo-front:latest .
           docker push pragna2803/demo-front:latest
 
-      - name: Pull Docker Images on Azure VM
-        with:
-          host: 104.42.125.187
-          username: azureuser
-          password: ${{ secrets.AZURE_VM_PASSWORD }}
-          port: 22
-          script: |
-            docker pull pragna2803/demo-back:latest
-            docker pull pragna2803/demo-front:latest
+      # - name: Pull Docker Images on Azure VM
+      #   uses: appleboy/ssh-action@master
+      #   with:
+      #     host: 104.42.125.187
+      #     username: azureuser
+      #     password: ${{ secrets.AZURE_VM_PASSWORD }}
+      #     port: 22
+      #     script: |
+      #       docker pull pragna2803/demo-back:latest
+      #       docker pull pragna2803/demo-front:latest
