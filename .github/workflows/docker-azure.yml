@@ -31,6 +31,7 @@ jobs:
           docker build -t pragna2803/demo-front:latest .
           docker push pragna2803/demo-front:latest
 
+
       - name: Pull Docker Images on Azure VM
         uses: appleboy/ssh-action@master
         with:
