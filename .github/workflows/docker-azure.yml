@@ -1,0 +1,42 @@
+name: Build, Push, and Pull Docker Images
+
+on:
+  push:
+    branches:
+      - main  # Adjust to your main branch name
+
+jobs:
+  build-push-pull:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build and Push Backend Docker image
+        working-directory: ./back_end
+        run: |
+          docker build -t pragna2803/demo-back:latest .
+          docker push pragna2803/demo-back:latest
+
+      - name: Build and Push Frontend Docker image
+        working-directory: ./front_end
+        run: |
+          docker build -t pragna2803/demo-front:latest .
+          docker push pragna2803/demo-front:latest
+
+      - name: Pull Docker Images on Azure VM
+        with:
+          host: 104.42.125.187
+          username: azureuser
+          password: ${{ secrets.AZURE_VM_PASSWORD }}
+          port: 22
+          script: |
+            docker pull pragna2803/demo-back:latest
+            docker pull pragna2803/demo-front:latest
