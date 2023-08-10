@@ -32,13 +32,19 @@ jobs:
           docker push pragna2803/demo-front:latest
 
 
-      - name: Pull Docker Images on Azure VM
-        uses: appleboy/ssh-action@master
-        with:
-          host: 13.87.129.170
-          username: azureuser
-          key: ${{ secrets.AZURE_SSH_PRIVATE_KEY }}
-          port: 22
-          script: |
-            docker pull pragna2803/demo-back:latest
-            docker pull pragna2803/demo-front:latest
+      -  name: Pull Docker Images on Azure VM
+         run: |
+           sudo apt-get update
+           sudo apt-get install -y sshpass
+           sshpass -p 'Sl8IvUCujiwa' ssh -o StrictHostKeyChecking=no prathipvm@20.204.26.101 "sudo docker pull pragna2803/demo-back:latest && sudo docker pull pragna2803/demo-front:latest"
+
+ #     - name: Pull Docker Images on Azure VM
+  #      uses: appleboy/ssh-action@master
+  #      with:
+   #       host: 20.204.26.101
+    #      username: prathipvm
+    #      key: ${{ secrets.AZURE_SSH_PRIVATE_KEY }}
+    #      port: 22
+    #      script: |
+      #       docker pull pragna2803/demo-back:latest
+      #       docker pull pragna2803/demo-front:latest
