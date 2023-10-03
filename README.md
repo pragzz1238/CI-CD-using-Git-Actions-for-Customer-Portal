@@ -42,13 +42,13 @@ To set up a local development environment, follow these steps:
 1. Clone the repository to your local machine:
 
    ```bash
-   git clone https://github.com/pragzz1238/Demo-Login-Page.git
+   git clone https://github.com/pragzz1238/CI-CD-using-Git-Actions-for-Customer-Portal.git
    ```
    
 2. Navigate to the project directory:
 
    ```bash
-   cd Demo-Login-Page
+   cd CI-CD-using-Git-Actions-for-Customer-Portal
 
 3. Install the required dependencies for both the front-end and back-end:
 
